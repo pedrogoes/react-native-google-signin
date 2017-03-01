@@ -105,8 +105,8 @@ class GoogleSignin {
 
   signIn() {
     return new Promise((resolve, reject) => {
-      const sucessCb = DeviceEventEmitter.addListener('RNGoogleSignInSuccess', (user) => {
-        this._user = user;
+      const sucessCb = DeviceEventEmitter.addListener('RNGoogleSignInSuccess', (user) => {  
+        this._user = Object.assign({}, user);
         RNGoogleSignin.getAccessToken(user).then((token) => {
           this._user.accessToken = token;
           this._removeListeners(sucessCb, errorCb);
